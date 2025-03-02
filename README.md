@@ -27,6 +27,21 @@ This project implements a basic web application using FastAPI and Jinja2 templat
 
 ## Development
 
+### Git Hooks Configuration
+
+This project uses Git hooks to ensure code quality. The pre-commit hook runs type checking and unit tests before each commit.
+
+To set up the hooks:
+
+```bash
+git config core.hooksPath .githooks
+```
+
+The pre-commit hook will:
+- Run type checking with mypy
+- Execute unit tests with pytest
+- Prevent commits if any checks fail
+
 ### Starting the Application
 
 Run the development server:
