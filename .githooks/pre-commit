@@ -1,0 +1,27 @@
+#!/bin/bash
+
+echo "Running pre-commit checks..."
+
+# Check if any Python files are staged
+python_files=$(git diff --cached --name-only --diff-filter=d | grep ".py$" || true)
+if [ -z "$python_files" ]; then
+    echo "No Python files to check. Skipping checks."
+    exit 0
+fi
+
+# Run type checking with mypy
+echo "Running type checking..."
+if ! mypy . ; then
+    echo "❌ Type checking failed. Please fix the errors and try again."
+    exit 1
+fi
+
+# Run unit tests with pytest
+echo "Running unit tests..."
+if ! python -m pytest ; then
+    echo "❌ Unit tests failed. Please fix the failing tests and try again."
+    exit 1
+fi
+
+echo "✅ All checks passed!"
+exit 0

@@ -32,3 +32,6 @@ dmypy.json
 # System files
 .DS_Store
 Thumbs.db
+
+# Ensure .githooks are tracked
+!.githooks/
